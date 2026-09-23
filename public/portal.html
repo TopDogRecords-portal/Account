@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <title>Top Dog Records · Fan Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --gold: #FFD966;
+      --gold-deep: #E6B422;
+      --gold-light: #FFEAA0;
+      --gold-glow: rgba(255, 215, 0, 0.4);
+      --gold-glow-strong: rgba(255, 215, 0, 0.6);
+      --bg-dark: #07090f;
+      --bg-deep: #0a0c14;
+      --bg-card: #141724;
+      --bg-elevated: #1c1f30;
+      --border-subtle: rgba(255, 215, 0, 0.1);
+      --border-medium: rgba(255, 215, 0, 0.22);
+      --border-strong: rgba(255, 215, 0, 0.4);
+      --text-primary: #f0f2ff;
+      --text-secondary: #a0a6c4;
+      --text-muted: #5e6480;
+      --danger: #ff5c5c;
+      --danger-glow: rgba(255, 92, 92, 0.35);
+      --success: #4ade80;
+      --success-glow: rgba(74, 222, 128, 0.35);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+      --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --shadow-card: 0 20px 40px -16px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 215, 0, 0.06) inset, 0 1px 0 0 rgba(255, 255, 255, 0.04) inset;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-dark);
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(8px, 2vw, 20px);
+      background-image: 
+        radial-gradient(ellipse 80% 60% at 15% 5%, rgba(255, 215, 0, 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 85% 95%, rgba(100, 80, 255, 0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255, 179, 71, 0.03) 0%, transparent 60%);
+      background-attachment: fixed;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .bg-blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+      will-change: transform;
+    }
+
+    .bg-blob-1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.15), transparent 70%);
+      top: -100px;
+      left: -100px;
+      animation: floatBlob1 20s ease-in-out infinite;
+    }
+
+    .bg-blob-2 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(100, 80, 255, 0.12), transparent 70%);
+      bottom: -80px;
+      right: -80px;
+      animation: floatBlob2 25s ease-in-out infinite;
+    }
+
+    .bg-blob-3 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255, 179, 71, 0.08), transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: floatBlob3 30s ease-in-out infinite;
+    }
+
+    @keyframes floatBlob1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(60px, 40px) scale(1.1); }
+      66% { transform: translate(-30px, 80px) scale(0.95); }
+    }
+
+    @keyframes floatBlob2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-50px, -30px) scale(1.15); }
+      66% { transform: translate(40px, -60px) scale(0.9); }
+    }
+
+    @keyframes floatBlob3 {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.2); }
+    }
+
+    .app-container {
+      max-width: 1340px;
+      width: 100%;
+      background: linear-gradient(165deg, rgba(20, 23, 36, 0.92) 0%, rgba(14, 16, 25, 0.95) 100%);
+      border-radius: var(--radius-xl);
+      box-shadow: 
+        0 40px 80px -20px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 215, 0, 0.1) inset,
+        0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
+        0 0 120px -40px rgba(255, 215, 0, 0.15);
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(20px) saturate(1.3);
+      -webkit-backdrop-filter: blur(20px) saturate(1.3);
+    }
+
+    .access-screen {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 35% 25%, rgba(26, 30, 48, 0.98), rgba(7, 9, 15, 0.99) 80%);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(16px, 4vw, 32px);
+      transition: opacity 0.6s var(--transition-smooth), visibility 0.6s;
+      border-radius: var(--radius-xl);
+      backdrop-filter: blur(10px);
+    }
+
+    .access-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .access-card {
+      background: rgba(20, 23, 36, 0.6);
+      border-radius: 40px;
+      padding: clamp(32px, 5vw, 52px) clamp(24px, 5vw, 44px) clamp(28px, 4vw, 44px);
+      width: 100%;
+      max-width: 460px;
+      box-shadow: 
+        0 40px 80px -20px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(255, 215, 0, 0.15),
+        0 2px 0 0 rgba(255, 255, 255, 0.06) inset,
+        0 -2px 0 0 rgba(0, 0, 0, 0.3) inset;
+      text-align: center;
+      backdrop-filter: blur(30px) saturate(1.6);
+      -webkit-backdrop-filter: blur(30px) saturate(1.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .access-card::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -20%;
+      width: 140%;
+      height: 80%;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 65%);
+      pointer-events: none;
+      animation: accessGlow 8s ease-in-out infinite;
+    }
+
+    @keyframes accessGlow {
+      0%, 100% { opacity: 0.5; transform: translate(0, 0); }
+      50% { opacity: 1; transform: translate(20px, 10px); }
+    }
+
+    .access-logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 22px;
+      background: linear-gradient(145deg, #2a3048, #141724);
+      border-radius: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      box-shadow: 
+        0 10px 25px -8px rgba(0, 0, 0, 0.8),
+        0 0 40px -10px var(--gold-glow),
+        0 2px 0 0 rgba(255, 255, 255, 0.08) inset,
+        0 -3px 0 0 rgba(0, 0, 0, 0.4) inset;
+      position: relative;
+      transition: transform 0.4s var(--transition-bounce);
+    }
+
+    .access-logo:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
+
+    .access-logo i {
+      font-size: 38px;
+      color: var(--gold);
+      filter: drop-shadow(0 0 16px var(--gold-glow-strong));
+      animation: logoPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes logoPulse {
+      0%, 100% { filter: drop-shadow(0 0 16px var(--gold-glow-strong)); }
+      50% { filter: drop-shadow(0 0 28px var(--gold-glow-strong)) drop-shadow(0 0 8px var(--gold)); }
+    }
+
+    .access-card h1 {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      background: linear-gradient(135deg, #FFE599, #FFD966 40%, #E6B422 70%, #FFD966);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      animation: gradientShift 4s ease-in-out infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% center; }
+      50% { background-position: 100% center; }
+    }
+
+    .access-subtitle {
+      color: var(--text-secondary);
+      font-size: clamp(13px, 2vw, 15px);
+      font-weight: 400;
+      margin-bottom: 36px;
+      letter-spacing: 0.2px;
+    }
+
+    .access-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .access-input-wrapper {
+      position: relative;
+    }
+
+    .access-input-wrapper i {
+      position: absolute;
+      left: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 16px;
+      transition: all 0.25s var(--transition-smooth);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .access-input-group input {
+      background: rgba(7, 9, 15, 0.7);
+      border: 1.5px solid #2a2f44;
+      border-radius: 60px;
+      padding: 19px 24px 19px 52px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: 3px;
+      transition: all 0.3s var(--transition-smooth);
+      outline: none;
+      width: 100%;
+      font-family: 'JetBrains Mono', 'Inter', monospace;
+      box-shadow: 
+        0 4px 12px -4px rgba(0, 0, 0, 0.6) inset,
+        0 1px 0 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .access-input-group input:focus {
+      border-color: var(--gold);
+      box-shadow: 
+        0 0 0 4px var(--gold-glow),
+        0 0 40px -8px var(--gold-glow),
+        0 4px 12px -4px rgba(0, 0, 0, 0.6) inset;
+      background: rgba(7, 9, 15, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .access-input-group input:focus + i,
+    .access-input-wrapper:focus-within i {
+      color: var(--gold);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .access-input-group input::placeholder {
+      color: #414659;
+      letter-spacing: 1.5px;
+      font-weight: 400;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .access-input-group input.error {
+      border-color: var(--danger);
+      box-shadow: 
+        0 0 0 4px var(--danger-glow),
+        0 4px 12px -4px rgba(0, 0, 0, 0.6) inset;
+      animation: shake 0.5s var(--transition-smooth);
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      15% { transform: translateX(-10px); }
+      30% { transform: translateX(10px); }
+      45% { transform: translateX(-7px); }
+      60% { transform: translateX(7px); }
+      75% { transform: translateX(-3px); }
+      90% { transform: translateX(3px); }
+    }
+
+    .access-input-group button {
+      background: linear-gradient(180deg, #FFE599 0%, #FFD966 40%, #E6B422 100%);
+      border: none;
+      border-radius: 60px;
+      padding: 19px 24px;
+      font-size: 16px;
+      font-weight: 800;
+      color: #0a0c14;
+      cursor: pointer;
+      transition: all 0.25s var(--transition-smooth);
+      box-shadow: 
+        0 10px 24px -8px rgba(255, 215, 0, 0.5),
+        0 2px 0 0 rgba(255, 255, 255, 0.4) inset,
+        0 -3px 0 0 rgba(180, 130, 0, 0.5) inset;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .access-input-group button:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 16px 32px -8px rgba(255, 215, 0, 0.65),
+        0 2px 0 0 rgba(255, 255, 255, 0.5) inset,
+        0 -3px 0 0 rgba(180, 130, 0, 0.6) inset;
+    }
+
+    .access-input-group button:active {
+      transform: translateY(1px);
+    }
+
+    .access-hint {
+      margin-top: 26px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      letter-spacing: 0.4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .access-hint i {
+      font-size: 11px;
+      color: var(--gold);
+    }
+
+    .access-error-msg {
+      color: var(--danger);
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 4px;
+      min-height: 18px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .access-error-msg.show {
+      opacity: 1;
+    }
+
+    .dashboard {
+      display: flex;
+      flex-direction: column;
+      padding: clamp(16px, 3vw, 32px) clamp(14px, 3vw, 32px) clamp(24px, 4vw, 40px);
+      min-height: 720px;
+      animation: fadeInUp 0.7s var(--transition-smooth);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .inactive-banner {
+      background: linear-gradient(135deg, rgba(255, 92, 92, 0.12), rgba(255, 92, 92, 0.04));
+      border: 1px solid rgba(255, 92, 92, 0.25);
+      border-radius: 60px;
+      padding: 12px 14px 12px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: clamp(18px, 3vw, 28px);
+      backdrop-filter: blur(16px) saturate(1.4);
+      -webkit-backdrop-filter: blur(16px) saturate(1.4);
+      color: #ff9b9b;
+      font-weight: 500;
+      font-size: clamp(12px, 1.8vw, 14.5px);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 24px -8px rgba(255, 92, 92, 0.15);
+      transition: all 0.4s var(--transition-smooth);
+    }
+
+    .inactive-banner::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--danger);
+      box-shadow: 0 0 16px var(--danger);
+    }
+
+    .inactive-banner-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .inactive-banner-content i {
+      font-size: 17px;
+      color: var(--danger);
+      flex-shrink: 0;
+    }
+
+    .activate-btn {
+      background: linear-gradient(180deg, #ff7b7b 0%, #ff4757 50%, #e63946 100%);
+      border: none;
+      border-radius: 40px;
+      padding: 10px 24px;
+      color: white;
+      font-weight: 700;
+      font-size: clamp(11px, 1.6vw, 13.5px);
+      cursor: pointer;
+      transition: all 0.25s var(--transition-smooth);
+      box-shadow: 
+        0 8px 18px -6px rgba(255, 71, 87, 0.5),
+        0 2px 0 0 rgba(255, 255, 255, 0.25) inset,
+        0 -2px 0 0 rgba(180, 30, 40, 0.6) inset;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .activate-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .activate-btn.activated {
+      background: linear-gradient(180deg, #6ee7b7 0%, #4ade80 50%, #22c55e 100%);
+      pointer-events: none;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: clamp(18px, 3vw, 28px);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(145deg, #2a3048, #141724);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-medium);
+      box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.8), 0 0 28px -8px var(--gold-glow);
+    }
+
+    .brand-icon i {
+      font-size: 22px;
+      color: var(--gold);
+    }
+
+    .brand h2 {
+      font-size: clamp(18px, 2.5vw, 22px);
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      color: var(--text-primary);
+    }
+
+    .brand h2 span {
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+    .brand-tagline {
+      font-size: clamp(9px, 1.4vw, 11.5px);
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .header-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .voice-support, .logout-btn {
+      background: rgba(28, 31, 48, 0.5);
+      border-radius: 60px;
+      padding: 11px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      cursor: pointer;
+      transition: all 0.3s var(--transition-smooth);
+      color: var(--text-secondary);
+      font-size: clamp(12px, 1.8vw, 14px);
+      font-weight: 500;
+      backdrop-filter: blur(12px);
+    }
+
+    .voice-support:hover, .logout-btn:hover {
+      background: rgba(38, 43, 64, 0.7);
+      border-color: var(--border-medium);
+      color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+
+    .voice-support i {
+      color: var(--gold);
+      font-size: 16px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.9fr 1.05fr;
+      gap: clamp(14px, 2vw, 20px);
+      align-items: start;
+    }
+
+    .card {
+      background: rgba(22, 25, 38, 0.45);
+      border-radius: var(--radius-lg);
+      padding: clamp(16px, 2.5vw, 22px);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(20px) saturate(1.3);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
+    }
+
+    .card:hover {
+      border-color: var(--border-medium);
+      transform: translateY(-3px);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: clamp(12px, 2vw, 18px);
+    }
+
+    .card-header h3 {
+      font-size: clamp(13px, 1.8vw, 15.5px);
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-header h3 i {
+      color: var(--gold);
+      font-size: 15px;
+    }
+
+    .card-header .header-action {
+      color: var(--text-muted);
+      font-size: 14px;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.03);
+      transition: all 0.3s;
+    }
+
+    .card-header .header-action:hover {
+      color: var(--gold);
+      background: rgba(255, 215, 0, 0.08);
+      transform: scale(1.1);
+    }
+
+    .new-members-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .member-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      transition: all 0.25s var(--transition-smooth);
+      cursor: pointer;
+    }
+
+    .member-item:hover {
+      background: rgba(255, 215, 0, 0.04);
+      transform: translateX(4px);
+    }
+
+    .member-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #2e3348, #1b1f30);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--gold);
+      font-size: 15px;
+      border: 1px solid var(--border-subtle);
+      flex-shrink: 0;
+    }
+
+    .member-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .member-details h4 {
+      font-size: clamp(13px, 1.6vw, 14.5px);
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .member-details p {
+      font-size: clamp(10px, 1.4vw, 12px);
+      color: var(--text-muted);
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .member-details p i {
+      font-size: 7px;
+      color: var(--success);
+    }
+
+    .feed-item {
+      display: flex;
+      gap: 14px;
+      padding: 12px 10px;
+      border-radius: var(--radius-sm);
+      transition: all 0.25s var(--transition-smooth);
+      cursor: pointer;
+    }
+
+    .feed-item:hover {
+      background: rgba(255, 215, 0, 0.04);
+      transform: translateX(4px);
+    }
+
+    .feed-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      background: linear-gradient(145deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.04));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 14px;
+      flex-shrink: 0;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .feed-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .feed-text p {
+      font-size: clamp(12px, 1.6vw, 13.5px);
+      color: #cdd1e6;
+      line-height: 1.45;
+    }
+
+    .feed-text span {
+      font-size: clamp(10px, 1.3vw, 11px);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 5px;
+    }
+
+    .badge-points {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: clamp(14px, 2vw, 18px);
+    }
+
+    .badge-icon {
+      flex: 1;
+      background: linear-gradient(145deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.03));
+      border-radius: 100px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--border-medium);
+    }
+
+    .badge-icon i {
+      color: var(--gold);
+      font-size: 18px;
+    }
+
+    .badge-icon span {
+      font-weight: 700;
+      color: var(--gold);
+      font-size: clamp(12px, 1.6vw, 13.5px);
+    }
+
+    .points {
+      background: rgba(28, 31, 48, 0.6);
+      border-radius: 100px;
+      padding: 10px 16px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border: 1px solid #2e3348;
+      font-size: clamp(10px, 1.4vw, 12px);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .points span {
+      color: var(--gold);
+      font-size: clamp(15px, 2.2vw, 18px);
+      font-weight: 800;
+    }
+
+    .profile-mini {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: clamp(14px, 2vw, 18px);
+      padding: 12px;
+      background: rgba(10, 12, 20, 0.4);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .profile-mini .member-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      font-size: 19px;
+    }
+
+    .profile-mini h4 {
+      font-size: clamp(14px, 1.8vw, 16px);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .profile-mini p {
+      color: var(--text-muted);
+      font-size: clamp(10px, 1.4vw, 12px);
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .profile-mini p i {
+      color: var(--success);
+      font-size: 7px;
+    }
+
+    .digital-card-wrapper {
+      perspective: 1200px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: clamp(14px, 2vw, 18px);
+    }
+
+    .digital-card {
+      width: 100%;
+      max-width: 340px;
+      background: linear-gradient(145deg, #1a1e2e 0%, #0d0f17 100%);
+      border-radius: 22px;
+      padding: 22px;
+      position: relative;
+      box-shadow: 0 25px 45px -18px rgba(0, 0, 0, 0.9), 0 1px 0 0 rgba(255, 255, 255, 0.05) inset;
+      overflow: hidden;
+      transition: transform 0.5s var(--transition-smooth);
+      cursor: pointer;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .digital-card:hover {
+      transform: rotateY(4deg) rotateX(2deg) scale(1.02);
+      border-color: rgba(255, 215, 0, 0.7);
+    }
+
+    .card-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .card-logo i {
+      color: var(--gold);
+      font-size: 22px;
+    }
+
+    .card-logo span {
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 1.5px;
+      font-size: 12.5px;
+      text-transform: uppercase;
+    }
+
+    .card-details h3 {
+      font-size: clamp(18px, 2.5vw, 21px);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .card-details .member-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(12px, 1.6vw, 14px);
+      color: var(--gold);
+      margin: 7px 0 3px;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-details .validity {
+      font-size: clamp(9px, 1.3vw, 11px);
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .card-chip {
+      width: 44px;
+      height: 33px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, #e6c866, #b38f2a 50%, #d4af37);
+      margin-top: 14px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 18px;
+    }
+
+    .card-footer .name {
+      font-size: clamp(11px, 1.4vw, 13px);
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .apple-wallet-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 7px 14px;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e0e4fc;
+      font-size: clamp(10px, 1.3vw, 11.5px);
+      font-weight: 600;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      background: rgba(28, 31, 48, 0.6);
+      border: 1px solid #2e3348;
+      border-radius: 40px;
+      padding: 10px 16px;
+      color: var(--text-secondary);
+      font-size: clamp(11px, 1.5vw, 12.5px);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      transition: all 0.3s var(--transition-smooth);
+    }
+
+    .action-btn i {
+      color: var(--gold);
+    }
+
+    .action-btn:hover {
+      background: rgba(38, 43, 64, 0.8);
+      border-color: var(--border-medium);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+
+    .voice-toast {
+      position: fixed;
+      bottom: clamp(16px, 3vw, 32px);
+      left: 50%;
+      transform: translateX(-50%) translateY(120px);
+      background: linear-gradient(135deg, #FFE599, #FFD966 40%, #E6B422);
+      color: #0a0c14;
+      padding: 15px 28px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: clamp(12px, 1.8vw, 14px);
+      box-shadow: 0 24px 40px -12px rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: transform 0.5s var(--transition-bounce);
+      z-index: 200;
+      pointer-events: none;
+      max-width: 90vw;
+    }
+
+    .voice-toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 9, 15, 0.85);
+      backdrop-filter: blur(16px);
+      z-index: 150;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(12px, 3vw, 32px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s var(--transition-smooth), visibility 0.4s;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-container {
+      background: linear-gradient(165deg, rgba(22, 25, 38, 0.95), rgba(14, 16, 25, 0.98));
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 720px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border-medium);
+      overflow: hidden;
+      transform: scale(0.95) translateY(20px);
+      transition: transform 0.4s var(--transition-bounce);
+    }
+
+    .modal-overlay.active .modal-container {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 26px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .modal-header h2 {
+      font-size: clamp(16px, 2.2vw, 20px);
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-header h2 i {
+      color: var(--gold);
+    }
+
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 92, 92, 0.15);
+      color: var(--danger);
+    }
+
+    .modal-search {
+      padding: 16px 26px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .modal-search input {
+      width: 100%;
+      background: rgba(7, 9, 15, 0.6);
+      border: 1px solid #2e3348;
+      border-radius: 50px;
+      padding: 12px 20px 12px 44px;
+      font-size: 14px;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .modal-search input:focus {
+      border-color: var(--gold);
+    }
+
+    .modal-search-wrapper {
+      position: relative;
+    }
+
+    .modal-search-wrapper i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    .modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 26px 26px;
+    }
+
+    .modal-stats {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0 16px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 12px;
+    }
+
+    .modal-stats .live-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--success);
+    }
+
+    .modal-stats .live-dot::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+
+    .full-members-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .full-member-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+    }
+
+    .full-member-row:hover {
+      background: rgba(255, 215, 0, 0.04);
+      transform: translateX(4px);
+    }
+
+    .full-member-row .member-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      font-size: 13px;
+    }
+
+    .full-member-row .member-badge {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--gold);
+      background: rgba(255, 215, 0, 0.08);
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--border-subtle);
+      margin-left: auto;
+    }
+
+    @media (max-width: 1080px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .dashboard-grid > .card:nth-child(3) {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+      .dashboard-grid > .card:nth-child(3) {
+        grid-column: span 1;
+      }
+      .top-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .brand, .header-actions-group {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+
+  <div class="app-container" id="appContainer">
+    <!-- ACCESS SCREEN -->
+    <div class="access-screen" id="accessScreen">
+      <div class="access-card">
+        <div class="access-logo">
+          <i class="fas fa-dog"></i>
+        </div>
+        <h1>Top Dog Records</h1>
+        <p class="access-subtitle">Enter your access ID to continue</p>
+        <div class="access-input-group">
+          <div class="access-input-wrapper">
+            <i class="fas fa-key"></i>
+            <input type="password" id="accessInput" placeholder="ENTER ACCESS CODE" maxlength="6" inputmode="numeric" autocomplete="off" aria-label="Access code">
+          </div>
+          <div class="access-error-msg" id="accessError"><i class="fas fa-exclamation-circle"></i> Invalid access code. Please try again.</div>
+          <button id="accessBtn" type="button"><i class="fas fa-paw"></i> Enter Portal</button>
+        </div>
+        <div class="access-hint">
+          <i class="fas fa-lock"></i> Encrypted 256-bit VIP Access Verification
+        </div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="dashboard" id="dashboard" style="display: none;">
+      <div class="inactive-banner" id="inactiveBanner">
+        <div class="inactive-banner-content">
+          <i class="fas fa-exclamation-circle"></i>
+          <span id="bannerText">Account inactive — please activate to enable full membership benefits.</span>
+        </div>
+        <button class="activate-btn" id="activateBtn"><i class="fas fa-bolt"></i> Activate Now</button>
+      </div>
+
+      <div class="top-bar">
+        <div class="brand">
+          <div class="brand-icon">
+            <i class="fas fa-dog"></i>
+          </div>
+          <div>
+            <h2>Top Dog <span>Records</span></h2>
+            <div class="brand-tagline">Fan Membership Portal</div>
+          </div>
+        </div>
+        <div class="header-actions-group">
+          <div class="voice-support" id="voiceSupportBtn" role="button" tabindex="0" aria-label="Voice support">
+            <i class="fas fa-volume-up"></i>
+            <span>Voice support</span>
+          </div>
+          <div class="logout-btn" id="logoutBtn" role="button" tabindex="0" aria-label="Lock portal">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Exit</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- Card 1: New Members -->
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fas fa-user-plus"></i> New members</h3>
+            <span class="header-action" id="openMembersModal" role="button" tabindex="0" aria-label="View all members"><i class="fas fa-chevron-right"></i></span>
+          </div>
+          <div class="new-members-list" id="newMembersList"></div>
+        </div>
+
+        <!-- Card 2: Latest Content -->
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fas fa-newspaper"></i> Latest content</h3>
+            <span class="header-action" id="refreshFeedBtn"><i class="fas fa-sync-alt"></i></span>
+          </div>
+          <div id="feedList"></div>
+        </div>
+
+        <!-- Card 3: Membership Card & Actions -->
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fas fa-id-card"></i> Membership</h3>
+            <span class="header-action"><i class="fas fa-gem"></i></span>
+          </div>
+
+          <div class="badge-points">
+            <div class="badge-icon">
+              <i class="fas fa-medal"></i>
+              <span>Gold Fan</span>
+            </div>
+            <div class="points">
+              <span id="fanPointsDisplay">2,480</span> fan points
+            </div>
+          </div>
+
+          <div class="profile-mini">
+            <div class="member-avatar" id="profileAvatar">JD</div>
+            <div>
+              <h4 id="profileName">Jordan D.</h4>
+              <p id="profileMemberSince"><i class="fas fa-circle"></i> Member since 2024</p>
+            </div>
+          </div>
+
+          <div class="digital-card-wrapper">
+            <div class="digital-card" id="digitalCard">
+              <div class="card-content">
+                <div class="card-logo">
+                  <i class="fas fa-dog"></i>
+                  <span>Top Dog Records</span>
+                </div>
+                <div class="card-details">
+                  <h3 id="cardHolderName">Jordan D.</h3>
+                  <div class="member-id" id="cardMemberId"><i class="fas fa-hashtag"></i> TDR-2603-88</div>
+                  <div class="validity">Valid thru 12/28</div>
+                </div>
+                <div class="card-chip"></div>
+                <div class="card-footer">
+                  <span class="name" id="cardFooterName">JORDAN D.</span>
+                  <div class="apple-wallet-badge">
+                    <i class="fab fa-apple"></i> Wallet
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <div class="action-btn" id="exportPngBtn" role="button" tabindex="0"><i class="fas fa-download"></i> PNG</div>
+            <div class="action-btn" id="exportWalletBtn" role="button" tabindex="0"><i class="fab fa-apple"></i> Wallet</div>
+            <div class="action-btn" id="exportDocBtn" role="button" tabindex="0"><i class="fas fa-file-alt"></i> Doc</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="membersModal">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2><i class="fas fa-users"></i> All New Members</h2>
+          <button class="modal-close" id="closeModalBtn" aria-label="Close modal"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-search">
+          <div class="modal-search-wrapper">
+            <i class="fas fa-search"></i>
+            <input type="text" id="memberSearchInput" placeholder="Search members by name or badge...">
+          </div>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <div class="modal-stats">
+            <span><i class="fas fa-users"></i> <strong id="totalMembersCount">1000</strong> members</span>
+            <span class="live-dot">Live · auto-updating</span>
+          </div>
+          <div class="full-members-list" id="fullMembersList"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-toast" id="voiceToast">
+      <i class="fas fa-volume-up"></i>
+      <span id="voiceMessage">Voice support active</span>
+    </div>
+  </div>
+
+  <script>
+    try {
+      (function() {
+        'use strict';
+
+        var ACCESS_CODE = "2603";
+        var SUPPORT_EMAIL = "org.topdawgrecords@gmail.com";
+        var MEMBER = {
+          name: "Jordan D.",
+          initials: "JD",
+          memberId: "TDR-2603-88",
+          since: "2024",
+          points: 2480,
+          badge: "Gold Fan"
+        };
+
+        // DOM refs
+        var accessScreen = document.getElementById('accessScreen');
+        var dashboard = document.getElementById('dashboard');
+        var accessInput = document.getElementById('accessInput');
+        var accessBtn = document.getElementById('accessBtn');
+        var accessError = document.getElementById('accessError');
+        var voiceSupportBtn = document.getElementById('voiceSupportBtn');
+        var logoutBtn = document.getElementById('logoutBtn');
+        var voiceToast = document.getElementById('voiceToast');
+        var voiceMessage = document.getElementById('voiceMessage');
+        var activateBtn = document.getElementById('activateBtn');
+        var bannerText = document.getElementById('bannerText');
+        var exportPngBtn = document.getElementById('exportPngBtn');
+        var exportWalletBtn = document.getElementById('exportWalletBtn');
+        var exportDocBtn = document.getElementById('exportDocBtn');
+        var newMembersList = document.getElementById('newMembersList');
+        var feedList = document.getElementById('feedList');
+        var profileAvatar = document.getElementById('profileAvatar');
+        var profileName = document.getElementById('profileName');
+        var profileMemberSince = document.getElementById('profileMemberSince');
+        var cardHolderName = document.getElementById('cardHolderName');
+        var cardMemberId = document.getElementById('cardMemberId');
+        var cardFooterName = document.getElementById('cardFooterName');
+        var openMembersModal = document.getElementById('openMembersModal');
+        var membersModal = document.getElementById('membersModal');
+        var closeModalBtn = document.getElementById('closeModalBtn');
+        var fullMembersList = document.getElementById('fullMembersList');
+        var totalMembersCount = document.getElementById('totalMembersCount');
+        var memberSearchInput = document.getElementById('memberSearchInput');
+        var fanPointsDisplay = document.getElementById('fanPointsDisplay');
+
+        // Data lists
+        var firstNames = ['Alex', 'Sam', 'Taylor', 'Jamie', 'Jordan', 'Casey', 'Riley', 'Morgan', 'Quinn', 'Avery', 'Parker', 'Skyler', 'Dakota', 'Reese', 'Finley', 'Rowan', 'Sage', 'Blake', 'Emery', 'Charlie', 'Luna', 'Kai', 'Nova', 'Orion', 'Jade', 'Leo', 'Maya', 'Ezra', 'Iris', 'Miles', 'Kendrick', 'Solana', 'Jay', 'Ab-Soul', 'SZA', 'Q'];
+        var lastNames = ['Rivera', 'Chen', 'Miller', 'Fox', 'Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Davis', 'Rodriguez', 'Martinez', 'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson', 'Thomas', 'Taylor'];
+        var badges = ['New Fan', 'Rising Star', 'Gold Fan', 'Platinum', 'Diamond', 'Super Fan', 'Legend', 'VIP'];
+
+        function rand(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+        function generateMembers(count) {
+          var members = [];
+          for (var i = 0; i < count; i++) {
+            var fn = rand(firstNames);
+            var ln = rand(lastNames);
+            var name = fn + ' ' + ln;
+            var initials = (fn.charAt(0) + (ln.charAt(0) || '')).toUpperCase();
+            var badge = rand(badges);
+            var hours = Math.floor(Math.random() * 168);
+            var joinDate;
+            if (hours < 1) joinDate = 'Just now';
+            else if (hours < 24) joinDate = hours + ' hour' + (hours > 1 ? 's' : '') + ' ago';
+            else {
+              var days = Math.floor(hours / 24);
+              joinDate = days + ' day' + (days > 1 ? 's' : '') + ' ago';
+            }
+            members.push({ name: name, initials: initials, badge: badge, joinDate: joinDate, id: i });
+          }
+          return members;
+        }
+
+        var allMembers = generateMembers(1000);
+        var filteredMembers = allMembers.slice();
+
+        var newMembers = [
+          { name: "Alex Rivera", initials: "AR", joinDate: "2 hours ago" },
+          { name: "Sam Chen", initials: "SC", joinDate: "5 hours ago" },
+          { name: "Taylor M.", initials: "TM", joinDate: "Yesterday" },
+          { name: "Jamie Fox", initials: "JF", joinDate: "2 days ago" }
+        ];
+
+        var feedItems = [
+          { icon: "fa-music", text: "New single 'Midnight Howl' drops Friday", time: "1h ago" },
+          { icon: "fa-video", text: "Behind the scenes: Studio session with Luna", time: "3h ago" },
+          { icon: "fa-gift", text: "Exclusive merch for Gold members", time: "1d ago" },
+          { icon: "fa-calendar", text: "Live Q&A with Top Dog artists", time: "2d ago" }
+        ];
+
+        // Voice
+        var speechSynth = window.speechSynthesis || null;
+
+        function speak(text) {
+          voiceMessage.textContent = text.length > 80 ? text.substring(0, 77) + '...' : text;
+          voiceToast.classList.add('show');
+
+          if (window._voiceTimeout) clearTimeout(window._voiceTimeout);
+          window._voiceTimeout = setTimeout(function() {
+            voiceToast.classList.remove('show');
+          }, 3200);
+
+          if (speechSynth) {
+            try {
+              speechSynth.cancel();
+              var utterance = new SpeechSynthesisUtterance(text);
+              utterance.rate = 0.95;
+              utterance.pitch = 1.0;
+              utterance.volume = 1;
+              utterance.lang = 'en-US';
+              utterance.onstart = function() { voiceSupportBtn.classList.add('speaking'); };
+              utterance.onend = function() { voiceSupportBtn.classList.remove('speaking'); };
+              utterance.onerror = function() { voiceSupportBtn.classList.remove('speaking'); };
+              speechSynth.speak(utterance);
+            } catch (e) {
+              // Graceful fallback
+            }
+          }
+        }
+
+        function escapeHtml(text) {
+          var div = document.createElement('div');
+          div.textContent = text;
+          return div.innerHTML;
+        }
+
+        function renderNewMembers() {
+          var html = '';
+          for (var i = 0; i < newMembers.length; i++) {
+            var m = newMembers[i];
+            html += '<div class="member-item">' +
+              '<div class="member-avatar">' + m.initials + '</div>' +
+              '<div class="member-details">' +
+                '<h4>' + escapeHtml(m.name) + '</h4>' +
+                '<p><i class="fas fa-circle"></i> Joined ' + m.joinDate + '</p>' +
+              '</div>' +
+            '</div>';
+          }
+          newMembersList.innerHTML = html;
+        }
+
+        function renderFeed() {
+          var html = '';
+          for (var i = 0; i < feedItems.length; i++) {
+            var f = feedItems[i];
+            html += '<div class="feed-item">' +
+              '<div class="feed-icon"><i class="fas ' + f.icon + '"></i></div>' +
+              '<div class="feed-text">' +
+                '<p>' + escapeHtml(f.text) + '</p>' +
+                '<span><i class="fas fa-clock"></i> ' + f.time + '</span>' +
+              '</div>' +
+            '</div>';
+          }
+          feedList.innerHTML = html;
+        }
+
+        function renderMemberInfo() {
+          profileAvatar.textContent = MEMBER.initials;
+          profileName.textContent = MEMBER.name;
+          profileMemberSince.innerHTML = '<i class="fas fa-circle"></i> Member since ' + MEMBER.since;
+          cardHolderName.textContent = MEMBER.name;
+          cardMemberId.innerHTML = '<i class="fas fa-hashtag"></i> ' + MEMBER.memberId;
+          cardFooterName.textContent = MEMBER.name.toUpperCase();
+          if (fanPointsDisplay) fanPointsDisplay.textContent = MEMBER.points.toLocaleString();
+        }
+
+        function renderFullMembers(members) {
+          var display = members.slice(0, 500);
+          var html = '';
+          for (var i = 0; i < display.length; i++) {
+            var m = display[i];
+            html += '<div class="full-member-row">' +
+              '<div class="member-avatar">' + m.initials + '</div>' +
+              '<div class="member-details">' +
+                '<h4>' + escapeHtml(m.name) + '</h4>' +
+                '<p><i class="fas fa-circle"></i> Joined ' + m.joinDate + '</p>' +
+              '</div>' +
+              '<span class="member-badge">' + escapeHtml(m.badge) + '</span>' +
+            '</div>';
+          }
+          fullMembersList.innerHTML = html;
+          totalMembersCount.textContent = members.length;
+        }
+
+        function openModal() {
+          renderFullMembers(filteredMembers);
+          membersModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          setTimeout(function() { memberSearchInput.focus(); }, 300);
+        }
+
+        function closeModal() {
+          membersModal.classList.remove('active');
+          document.body.style.overflow = '';
+          memberSearchInput.value = '';
+          filteredMembers = allMembers.slice();
+        }
+
+        function filterMembers(query) {
+          var q = query.toLowerCase().trim();
+          if (!q) {
+            filteredMembers = allMembers.slice();
+          } else {
+            filteredMembers = allMembers.filter(function(m) {
+              return m.name.toLowerCase().indexOf(q) !== -1 || m.badge.toLowerCase().indexOf(q) !== -1;
+            });
+          }
+          renderFullMembers(filteredMembers);
+        }
+
+        function grantAccess() {
+          accessScreen.classList.add('hidden');
+          dashboard.style.display = 'flex';
+          renderNewMembers();
+          renderFeed();
+          renderMemberInfo();
+          setTimeout(function() {
+            speak('Welcome Jordan. Your account is currently inactive. Please activate to unlock full membership benefits.');
+          }, 700);
+        }
+
+        function lockPortal() {
+          dashboard.style.display = 'none';
+          accessScreen.classList.remove('hidden');
+          accessInput.value = '';
+          speak('Portal locked. See you soon.');
+        }
+
+        function checkAccess() {
+          var entered = accessInput.value.trim();
+          if (entered === ACCESS_CODE) {
+            accessError.classList.remove('show');
+            accessInput.classList.remove('error');
+            grantAccess();
+          } else {
+            accessInput.classList.add('error');
+            accessError.classList.add('show');
+            accessInput.value = '';
+            accessInput.focus();
+            speak('Access Denied. Security code is incorrect.');
+            setTimeout(function() { accessInput.classList.remove('error'); }, 1200);
+            setTimeout(function() { accessError.classList.remove('show'); }, 3000);
+          }
+        }
+
+        function activateAccount() {
+          speak('Account activated successfully. All fan privileges unlocked.');
+          activateBtn.classList.add('activated');
+          activateBtn.innerHTML = '<i class="fas fa-check-circle"></i> Activated';
+
+          var banner = document.getElementById('inactiveBanner');
+          banner.style.background = 'linear-gradient(135deg, rgba(74, 222, 128, 0.15), rgba(74, 222, 128, 0.05))';
+          banner.style.borderColor = 'rgba(74, 222, 128, 0.35)';
+          banner.style.color = '#86efac';
+          var icon = banner.querySelector('.inactive-banner-content i');
+          if (icon) {
+            icon.style.color = '#4ade80';
+            icon.className = 'fas fa-shield-check';
+          }
+          if (bannerText) bannerText.textContent = 'Account active · Full VIP membership perks active and synchronized in real-time.';
+          MEMBER.points += 500;
+          renderMemberInfo();
+        }
+
+        function downloadPNG() {
+          try {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            canvas.width = 680;
+            canvas.height = 400;
+
+            var bgG = ctx.createLinearGradient(0, 0, 680, 400);
+            bgG.addColorStop(0, '#1a1e2e');
+            bgG.addColorStop(1, '#0d0f17');
+            ctx.fillStyle = bgG;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.shadowColor = 'rgba(255, 215, 0, 0.3)';
+            ctx.shadowBlur = 25;
+            ctx.fillStyle = '#161a28';
+            ctx.beginPath();
+            roundRect(ctx, 40, 40, 600, 320, 24);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            ctx.strokeStyle = '#FFD966';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            roundRect(ctx, 40, 40, 600, 320, 24);
+            ctx.stroke();
+
+            ctx.fillStyle = '#FFD966';
+            ctx.font = 'bold 24px sans-serif';
+            ctx.fillText('TOP DOG RECORDS', 70, 105);
+
+            ctx.fillStyle = '#f0f2ff';
+            ctx.font = 'bold 28px sans-serif';
+            ctx.fillText(MEMBER.name, 70, 175);
+
+            ctx.fillStyle = '#FFD966';
+            ctx.font = 'bold 18px monospace';
+            ctx.fillText('#' + MEMBER.memberId, 70, 215);
+
+            ctx.fillStyle = '#5e6480';
+            ctx.font = '14px sans-serif';
+            ctx.fillText('VALID THRU 12/28', 70, 255);
+
+            ctx.fillStyle = '#a0a6c4';
+            ctx.font = 'bold 14px sans-serif';
+            ctx.fillText(MEMBER.name.toUpperCase(), 70, 320);
+
+            var link = document.createElement('a');
+            link.download = 'TopDog_Membership_' + MEMBER.name.replace(/\s/g, '_') + '.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            speak('Membership card exported as PNG image.');
+          } catch (e) {
+            speak('Export failed. Please try again.');
+          }
+        }
+
+        function roundRect(ctx, x, y, w, h, r) {
+          if (w < 2 * r) r = w / 2;
+          if (h < 2 * r) r = h / 2;
+          ctx.moveTo(x + r, y);
+          ctx.lineTo(x + w - r, y);
+          ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+          ctx.lineTo(x + w, y + h - r);
+          ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+          ctx.lineTo(x + r, y + h);
+          ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+          ctx.lineTo(x, y + r);
+          ctx.quadraticCurveTo(x, y, x + r, y);
+        }
+
+        function downloadWalletPass() {
+          var content = 'Top Dog Records Membership Pass\n' +
+            '================================\n' +
+            'Member: ' + MEMBER.name + '\n' +
+            'Member ID: ' + MEMBER.memberId + '\n' +
+            'Member Since: ' + MEMBER.since + '\n' +
+            'Badge: ' + MEMBER.badge + '\n' +
+            'Fan Points: ' + MEMBER.points + '\n\n' +
+            'Status: Active Fan\n' +
+            '--------------------------------\n' +
+            'This pass is compatible with Apple Wallet.\n' +
+            '(c) Top Dog Records. All rights reserved.';
+
+          var blob = new Blob([content], { type: 'application/vnd.apple.pkpass' });
+          var link = document.createElement('a');
+          link.download = 'TopDog_Membership_' + MEMBER.name.replace(/\s/g, '_') + '.pkpass';
+          link.href = URL.createObjectURL(blob);
+          link.click();
+          setTimeout(function() { URL.revokeObjectURL(link.href); }, 1000);
+          speak('Apple Wallet pass downloaded.');
+        }
+
+        function downloadDocument() {
+          var docContent = 'TOP DOG RECORDS - MEMBERSHIP CERTIFICATE\n' +
+            '========================================\n' +
+            'Member: ' + MEMBER.name + '\n' +
+            'Member ID: ' + MEMBER.memberId + '\n' +
+            'Member Since: ' + MEMBER.since + '\n' +
+            'Badge: ' + MEMBER.badge + '\n' +
+            'Fan Points: ' + MEMBER.points + '\n\n' +
+            'Official membership verification.\n' +
+            'Support: ' + SUPPORT_EMAIL + '\n';
+
+          var blob = new Blob([docContent], { type: 'text/plain;charset=utf-8' });
+          var link = document.createElement('a');
+          link.download = 'TopDog_Membership_' + MEMBER.name.replace(/\s/g, '_') + '.txt';
+          link.href = URL.createObjectURL(blob);
+          link.click();
+          setTimeout(function() { URL.revokeObjectURL(link.href); }, 1000);
+          speak('Membership document exported.');
+        }
+
+        // Event listeners
+        accessBtn.addEventListener('click', checkAccess);
+        accessInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') checkAccess();
+        });
+        accessInput.addEventListener('input', function() {
+          accessInput.classList.remove('error');
+          accessError.classList.remove('show');
+        });
+
+        voiceSupportBtn.addEventListener('click', function() {
+          speak('Top Dog Records fan portal is online. Real-time updates are streaming. All member perks active.');
+        });
+        if (logoutBtn) logoutBtn.addEventListener('click', lockPortal);
+
+        activateBtn.addEventListener('click', activateAccount);
+        exportPngBtn.addEventListener('click', downloadPNG);
+        exportWalletBtn.addEventListener('click', downloadWalletPass);
+        exportDocBtn.addEventListener('click', downloadDocument);
+
+        openMembersModal.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        membersModal.addEventListener('click', function(e) {
+          if (e.target === membersModal) closeModal();
+        });
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && membersModal.classList.contains('active')) closeModal();
+        });
+
+        memberSearchInput.addEventListener('input', function(e) {
+          filterMembers(e.target.value);
+        });
+
+        // FIXED REAL-TIME UPDATES (No syntax error!)
+        setInterval(function() {
+          var fn = rand(firstNames);
+          var ln = rand(lastNames);
+          var name = fn + ' ' + ln;
+          var initials = (fn.charAt(0) + (ln.charAt(0) || '')).toUpperCase();
+          var newM = { name: name, initials: initials, badge: rand(badges), joinDate: 'Just now', id: Date.now() };
+
+          allMembers.unshift(newM);
+          if (allMembers.length > 1000) allMembers = allMembers.slice(0, 1000);
+
+          newMembers.unshift({ name: name, initials: initials, joinDate: 'Just now' });
+          if (newMembers.length > 5) newMembers.pop();
+          renderNewMembers();
+
+          var q = memberSearchInput.value.trim().toLowerCase();
+          if (!q) {
+            filteredMembers = allMembers.slice();
+          } else {
+            filteredMembers = allMembers.filter(function(m) {
+              return m.name.toLowerCase().indexOf(q) !== -1 || m.badge.toLowerCase().indexOf(q) !== -1;
+            });
+          }
+
+          if (membersModal.classList.contains('active')) {
+            renderFullMembers(filteredMembers);
+          }
+        }, 6000);
+
+        setTimeout(function() {
+          if (accessInput) accessInput.focus();
+        }, 400);
+
+      })();
+    } catch (err) {
+      console.error('Portal init error:', err);
+    }
+  </script>
+</body>
+</html>

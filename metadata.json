@@ -1,0 +1,6 @@
+{
+  "name": "Top Dog Records Fan Portal",
+  "description": "Exclusive fan portal with access authentication, real-time member updates, digital VIP cards, and interactive fan experiences.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
